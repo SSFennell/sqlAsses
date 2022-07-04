@@ -1,0 +1,48 @@
+SELECT * FROM users;
+SELECT * FROM progress;
+
+/*top 25 schools edu domains*/
+SELECT * FROM users
+WHERE email_domain
+LIMIT 25;
+
+/*How many .edu learners are located in New York?
+*/
+SELECT * 
+FROM users
+WHERE city = 'New York'; 
+
+/*How many of these Codecademy learners are using the mobile app?*/
+SELECT COUNT(*)
+FROM users
+WHERE mobile_app IS NOT NULL;
+
+/*Using this function, query for the sign up counts for each hour.*/
+SELECT sign_up_at,
+strftime('%S', sign_up_at)
+FROM users
+GROUP BY 1 
+LIMIT 20;
+
+/*top 25 schools edu domains*/
+SELECT *
+FROM users
+JOIN progress
+on users.user_id == progress.user_id;
+
+/* course New York student are taking*/
+SELECT *
+FROM users
+JOIN progress
+ON users.user_id = progress.user_id
+WHERE postal = 'New York'; 
+
+/* course Chicago student are taking*/
+SELECT *
+FROM users
+JOIN progress
+ON users.user_id = progress.user_id
+WHERE postal = 'Chicago'; 
+
+
+
